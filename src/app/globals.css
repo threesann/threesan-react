@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  height: 100vh;
+  font-family: fixedSys;
+  color: #ffffff;
+}
+
+@font-face {
+  font-family: fixedSys;
+  src: url(FixedSys.ttf);
+}
+
+/* :nth-child(1) { --nth-child: 1 }
+:nth-child(2) { --nth-child: 2 }
+:nth-child(3) { --nth-child: 3 }
+:nth-child(4) { --nth-child: 4 }
+:nth-child(5) { --nth-child: 5}
+:nth-child(6) { --nth-child: 6 }
+:nth-child(7) { --nth-child: 7 }
+:nth-child(8) { --nth-child: 8 }
+:nth-child(9) { --nth-child: 9 }
+:nth-child(10) { --nth-child: 10 }
+:nth-child(11) { --nth-child: 11 }
+:nth-child(12) { --nth-child: 12 }
+
+#circling{
+  left:45%;
+  top:45%;
+  display:flex;
+  width: 64px;
+  height: 64px;
+  align-items:center;
+  justify-content: center;
+  position:absolute;
+  --static-transform:rotateZ(calc((var(--nth-child) + 6)*calc(360/6)*1deg))
+          translateY(600%)
+          rotateZ(calc((var(--nth-child) + 6)*calc(360/6)*-1deg));
+  transform:var(--static-transform);
+} */
+/* change calc(360/n) where n = number of circling divs u want */
+/* change translateY(n%) to increase/decrease radius */
+
+.container {
+  --image-size: 6.5em; /* image size */
+  --rel: 4; /* how much extra space we want between images, 1 = 1 image size */
+  --ba: 1turn/var(--m);  /* base angle = 1 full turn divided by number of edges */
+  /* (1 + var(--rel))*var(--image-size) = polygon edge = img size + extra space */
+  --radius: calc(.5*(1 + var(--rel))*var(--image-size)/tan(.5*var(--ba))); /* circle radius */
+  display: grid;
+  width: calc(2*var(--radius) + var(--image-size)); /* container size */
+}
+
+.container div {
+  grid-area: 1/ 1;
+  place-self: center;
+  width: fit-content;
+  --ca: calc(var(--i)*var(--ba));
+  transform: 
+    rotate(var(--ca)) 
+    translate(var(--radius))
+    rotate(calc(-1*var(--ca)))
+}
+
+/* styling for rotating div */
+#rotate {
+  position: relative;
+  transform-style: preserve-3d; /* ensures children also move in the 3d space */
+  transform:
+    perspective(5000px)
+    rotateY(var(--rotateY)) /* values for the element's rotation; searching for variables */ 
+    rotateX(var(--rotateX))
+}
+
+#rotate::before,
+#rotate::after {
+  content: '';
+  position: absolute;
+  border-radius: inherit;
+}
+
+/* styling for shadow behind rotating div */
+#rotate::before {
+  inset: 0.75rem;
+  background-color: black;
+  transform: translateZ(-9px); /* just above the background element */
+  filter: blur(15px); /* adds a slight blur to the shadow */
+  opacity: 0.5;
+}
+
+/* styling for background element */
+#rotate::after {
+  inset: -0.5rem; /* slightly larger than original div; can be set to 0 to match it*/
+  background-color: #12111c;
+  transform: translateZ(-10px); /* moves the background behind the div; can be adjusted */
+  filter: blur(1px); /* adds a slight blur to the shadow */
+}
