@@ -12,6 +12,7 @@ const config: Config = {
         theme: {
           background: '#27253b',
           border: '#12111c',
+          text: '#413a87',
         }
       },
       backgroundImage: {

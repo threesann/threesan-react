@@ -44,7 +44,7 @@ body {
 /* change translateY(n%) to increase/decrease radius */
 
 .container {
-  --image-size: 6.5em; /* image size */
+  --image-size: 6.1em; /* image size */
   --rel: 4; /* how much extra space we want between images, 1 = 1 image size */
   --ba: 1turn/var(--m);  /* base angle = 1 full turn divided by number of edges */
   /* (1 + var(--rel))*var(--image-size) = polygon edge = img size + extra space */
