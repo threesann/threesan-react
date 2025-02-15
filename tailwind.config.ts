@@ -21,7 +21,7 @@ const config: Config = {
       keyframes: {
         backgroundMove: {
           '0%': { backgroundPosition: "0 0" },
-          '100%': { backgroundPosition: "1920 0" },
+          '100%': { backgroundPosition: "1920px 0" },
         },
         slideUpAndFade: {
           from: { opacity: "0", transform: "translateY(10px)" },
