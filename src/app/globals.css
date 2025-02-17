@@ -43,57 +43,63 @@ body {
 /* change calc(360/n) where n = number of circling divs u want */
 /* change translateY(n%) to increase/decrease radius */
 
-.container {
-  --image-size: 6.1em; /* image size */
-  --rel: 4; /* how much extra space we want between images, 1 = 1 image size */
-  --ba: 1turn/var(--m);  /* base angle = 1 full turn divided by number of edges */
-  /* (1 + var(--rel))*var(--image-size) = polygon edge = img size + extra space */
-  --radius: calc(.5*(1 + var(--rel))*var(--image-size)/tan(.5*var(--ba))); /* circle radius */
-  display: grid;
-  width: calc(2*var(--radius) + var(--image-size)); /* container size */
+
+/* as globals.css can't read circle-container when it is styled for md viewports using tailwind, i have to do it here ;< */
+@media (min-width: 768px) {
+  .circle-container {
+    --image-size: 6.1em; /* image size */
+    --rel: 4; /* how much extra space we want between images, 1 = 1 image size */
+    --ba: 1turn/var(--m);  /* base angle = 1 full turn divided by number of edges */
+    /* (1 + var(--rel))*var(--image-size) = polygon edge = img size + extra space */
+    --radius: calc(.5*(1 + var(--rel))*var(--image-size)/tan(.5*var(--ba))); /* circle radius */
+    display: grid;
+    width: calc(2*var(--radius) + var(--image-size)); /* container size */
+  }
+  
+  .circle-container div {
+    grid-area: 1/ 1;
+    place-self: center;
+    width: fit-content;
+    --ca: calc(var(--i)*var(--ba));
+    transform: 
+      rotate(var(--ca)) 
+      translate(var(--radius))
+      rotate(calc(-1*var(--ca)))
+  }
+
+  /* styling for rotating div */
+  #rotate {
+    position: relative;
+    transform-style: preserve-3d; /* ensures children also move in the 3d space */
+    transform:
+      perspective(5000px)
+      rotateY(var(--rotateY)) /* values for the element's rotation; searching for variables */ 
+      rotateX(var(--rotateX))
+  }
+
+  #rotate::before,
+  #rotate::after {
+    content: '';
+    position: absolute;
+    border-radius: inherit;
+  }
+
+  /* styling for shadow behind rotating div */
+  #rotate::before {
+    inset: 0.75rem;
+    background-color: black;
+    transform: translateZ(-9px); /* just above the background element */
+    filter: blur(15px); /* adds a slight blur to the shadow */
+    opacity: 0.5;
+  }
+
+  /* styling for background element */
+  #rotate::after {
+    inset: -0.5rem; /* slightly larger than original div; can be set to 0 to match it*/
+    background-color: #12111c;
+    transform: translateZ(-10px); /* moves the background behind the div; can be adjusted */
+    filter: blur(1px); /* adds a slight blur to the shadow */
+  }
 }
 
-.container div {
-  grid-area: 1/ 1;
-  place-self: center;
-  width: fit-content;
-  --ca: calc(var(--i)*var(--ba));
-  transform: 
-    rotate(var(--ca)) 
-    translate(var(--radius))
-    rotate(calc(-1*var(--ca)))
-}
 
-/* styling for rotating div */
-#rotate {
-  position: relative;
-  transform-style: preserve-3d; /* ensures children also move in the 3d space */
-  transform:
-    perspective(5000px)
-    rotateY(var(--rotateY)) /* values for the element's rotation; searching for variables */ 
-    rotateX(var(--rotateX))
-}
-
-#rotate::before,
-#rotate::after {
-  content: '';
-  position: absolute;
-  border-radius: inherit;
-}
-
-/* styling for shadow behind rotating div */
-#rotate::before {
-  inset: 0.75rem;
-  background-color: black;
-  transform: translateZ(-9px); /* just above the background element */
-  filter: blur(15px); /* adds a slight blur to the shadow */
-  opacity: 0.5;
-}
-
-/* styling for background element */
-#rotate::after {
-  inset: -0.5rem; /* slightly larger than original div; can be set to 0 to match it*/
-  background-color: #12111c;
-  transform: translateZ(-10px); /* moves the background behind the div; can be adjusted */
-  filter: blur(1px); /* adds a slight blur to the shadow */
-}
