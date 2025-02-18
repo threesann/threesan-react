@@ -102,4 +102,12 @@ body {
   }
 }
 
-
+/* temp banner style */
+.banner-style {
+  background-image: 
+    linear-gradient(to bottom, transparent, black),
+    linear-gradient(to top, transparent, black),
+    url('/section2-banner-temp.png');
+  background-repeat: repeat;
+  position: relative;
+}

@@ -23,39 +23,40 @@ export default function Home() {
         });
 
         // scroll handling
-        const sections = [
-            document.querySelector('.section1'),
-            document.querySelector('.section2'),
-        ]
-        const prevScrollY = {current : 0}
-        let currentSection = 0;
+        const sections: HTMLElement[] =  Array.from(document.querySelectorAll('.section')) as HTMLElement[]; // sections in code automatically added
 
-        const handleScroll = () => {
-            const currentScrollY = window.scrollY;
-            if (currentScrollY > prevScrollY.current) {
-                console.log('Scrolling down');
+        let currentSection = 0;
+        let isScrolling = false;
+
+        const handleScroll = (event: WheelEvent) => {
+            if (isScrolling) return;
+
+            isScrolling = true;
+            const delta = event.deltaY;
+
+            if (delta > 0) {
+                console.log('scrolling down')
                 currentSection = Math.min(currentSection + 1, sections.length - 1);
-                sections[currentSection]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             } else {
-                console.log('Scrolling up');
+                console.log('scrolling up')
                 currentSection = Math.max(currentSection - 1, 0);
-                sections[currentSection]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
-            prevScrollY.current = currentScrollY;
+
+            sections[currentSection].scrollIntoView({ behavior: 'smooth', block: 'start' });
+            
+            // delay to prevent multiple scrolls
+            setTimeout(() => {
+                isScrolling = false;
+            }, 390); // ran some tests; 390ms is the average time it takes scrollIntoView to scroll 100vh. it's a little janky, but it works, as they'll all be screen height
         };
 
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('wheel', handleScroll);
 
         return () => {
-            window.removeEventListener('scroll', handleScroll);
-        };
-        
-
+            window.removeEventListener('wheel', handleScroll);
+        }; 
     }, []);
 
-
-
-    
 
     function rotateElement({ event, element }: RotateElementParams) { // event represents mouse movement, element is the element to rotate
         const x = event.clientX; // get the horizontal mouse position
@@ -73,9 +74,9 @@ export default function Home() {
     }
 
     return (
-        <div className='flex flex-col'>
+        <div className='w-full h-fit'>
         {/* section 1 */}
-        <div className="section1 w-full h-[98vh] bg-nighttime animate-backgroundMove">
+        <div className="section h-[96vh] w-full bg-nighttime animate-backgroundMove">
             <div className="flex items-center justify-center h-full md:w-1/5 w-4/5 m-auto">
 
                 {/* change number in style of container div to change no. of elements in circle - other settings such as radius/space between elements are in globals.css */}
@@ -157,12 +158,25 @@ export default function Home() {
             <p className='absolute bottom-0 w-full text-center text-theme-border text-sm'>© 2025, burgerbross Sp. z o.o. (not a real company)</p>
         </div>
         {/* section 2 */}
-        <div className='section2 w-full h-screen bg-theme-background'>
+        <div className='section w-full h-screen bg-black'>
+            <div className='flex flex-col h-full w-full'>
+                <div className='flex flex-row gap-5 items-center justify-center text-center h-2/5 w-full banner-style'>
+                    <div className='bg-white h-[2px] w-1/3' />
+                    <p className='text-6xl'>other stuff</p>
+                    <div className='bg-white h-[2px] w-1/3' />
+                </div>
+                <div className='flex flex-col gap-2 justify-center text-center'>
+                    <p className='text-4xl'>hiya.<br />sorry. there's no 'other stuff'.</p>
+                    <p className='text-2xl'>in the future, this'll be a section for miscellaneous things that i make for good and fun.<br />of the world. the entire of it.</p>
+                    <p className='text-xl'>i made this really cool full-page scroll feature, and needed to have other sections to show for it...<br />now i just have this section with nothing in it yet......<br /><br />i'm sorry if i got your expectations up from reading the title.....</p>
+                    <p className='text-md text-gray-500'><br />i'm sorry.... for getting your hopes up for the other stuff....<br /><br /></p>
+                    <p className='text-sm text-gray-500'>forgive me......................</p>
+                </div>
+            </div>
+        </div>
+        <div className='section w-full h-screen bg-theme-background'>
             <div className='flex flex-col items-center justify-center w-3/5 h-full m-auto text-center gap-1'>
-                <p className='text-4xl'>hiya :]</p>
-                <p className='text-2xl'>this section is currently under development. i just made this cool scroll feature but don't have the time to learn how to make a beta branch for my github repo.
-                    if anyone sees this, then now you know!
-                </p>
+                <p className='text-4xl'>SURPRISE! section 3 :O</p>
             </div>
         </div>
         </div>
