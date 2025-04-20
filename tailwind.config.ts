@@ -27,6 +27,10 @@ const config: Config = {
           from: { opacity: "0", transform: "translateY(10px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        fadeIn: {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
         bob: {
           '0%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-5px)' },
@@ -46,6 +50,7 @@ const config: Config = {
       animation: {
         backgroundMove: "backgroundMove 240s linear infinite",
         slideUpAndFade: "slideUpAndFade 1s cubic-bezier(0.16, 1, 0.3, 1)",
+        fadeIn: "fadeIn 1s ease-in-out",
         bob: "bob 3s ease-in-out infinite",
         slideUpAndFadeAndBob: "slideUpAndFade 1s cubic-bezier(0.16, 1, 0.3, 1), bob 3s ease-in-out 1s infinite",
         textFlash: "textFlash 1s infinite",

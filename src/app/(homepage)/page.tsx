@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 
 import Descriptions from '@/lib/homepage/sitedescriptions';
+import Link from 'next/link';
 
 
 export default function Home() {
@@ -76,14 +77,14 @@ export default function Home() {
     return (
         <div className='w-full h-fit'>
         {/* section 1 */}
-        <div className="section h-[96vh] w-full bg-nighttime animate-backgroundMove">
+        <div className="section relative h-screen w-full bg-nighttime animate-backgroundMove">
             <div className="flex items-center justify-center h-full md:w-1/5 w-4/5 m-auto">
 
                 {/* change number in style of container div to change no. of elements in circle - other settings such as radius/space between elements are in globals.css */}
                 {/* circle div (container) */}
                 <div className="circle-container flex flex-col gap-1" style={{"--m": 6} as React.CSSProperties}>
                     {/* central element - properties of rotation can be changed above, styling in globals.css */}
-                    <div id="rotate" className="flex flex-col items-center p-4 h-fit w-full bg-theme-background border-4 border-theme-border shadow shadow-black/50 animate-slideUpAndFade">
+                    <div id="rotate" className="flex flex-col items-center p-4 h-fit w-full bg-theme-background border-4 border-theme-border shadow shadow-black/50 animate-fadeIn">
                         <p className="text-4xl pb-2">threesan</p>
                         {currentDescription ?
                             <div className='flex flex-col w-4/5'>
@@ -97,6 +98,7 @@ export default function Home() {
                             : <p className="text-center">this is my website to display everything i've ever made ever.</p>
                         }
                     </div>
+                    <p className='w-full text-center text-theme-border text-sm mt-1'>© 2025, burgerbross Sp. z o.o. (not a real company)</p>
 
                     {/* elements in circle; 1-6 */}
                     <div style={{"--i": 1} as React.CSSProperties}>
@@ -155,22 +157,51 @@ export default function Home() {
 
                 </div>  
             </div>
-            <p className='absolute bottom-0 w-full text-center text-theme-border text-sm'>© 2025, burgerbross Sp. z o.o. (not a real company)</p>
+            <div className='absolute bottom-1 h-fit w-full flex flex-row items-center justify-center gap-2 px-10 animate-slideUpAndFadeAndBob'>
+                <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[15px] border-t-white" />
+                <p className='text-center text-white text-2xl'>SCROLL DOWN</p>
+                <div className="w-0 h-0 border-l-[15px] border-l-transparent border-r-[15px] border-r-transparent border-t-[15px] border-t-white" />
+            </div>
         </div>
         {/* section 2 */}
         <div className='section w-full h-screen bg-black'>
-            <div className='flex flex-col h-full w-full'>
-                <div className='flex flex-row gap-5 items-center justify-center text-center h-2/5 w-full banner-style'>
-                    <div className='bg-white h-[2px] w-1/3' />
-                    <p className='text-6xl'>other stuff</p>
-                    <div className='bg-white h-[2px] w-1/3' />
+            <div className='flex flex-col h-full w-full gap-2'>
+                <div className='flex flex-row gap-5 items-center justify-center text-center h-1/5 w-full banner-style'>
+                    <div className='bg-white h-[2px] md:w-1/3 w-1/4' />
+                    <p className='md:text-5xl text-2xl'>other stuff</p>
+                    <div className='bg-white h-[2px] md:w-1/3 w-1/4' />
                 </div>
-                <div className='flex flex-col gap-2 justify-center text-center'>
-                    <p className='text-4xl'>hiya.<br />sorry. there's no 'other stuff'.</p>
-                    <p className='text-2xl'>in the future, this'll be a section for miscellaneous things that i make for good and fun.<br />of the world. the entire of it.</p>
-                    <p className='text-xl'>i made this really cool full-page scroll feature, and needed to have other sections to show for it...<br />now i just have this section with nothing in it yet......<br /><br />i'm sorry if i got your expectations up from reading the title.....</p>
-                    <p className='text-md text-gray-500'><br />i'm sorry.... for getting your hopes up for the other stuff....<br /><br /></p>
-                    <p className='text-sm text-gray-500'>forgive me......................</p>
+                
+                <div className='flex md:flex-row flex-col md:w-3/5 w-4/5 md:h-3/5 h-full m-auto md:gap-3 gap-2'>
+                    <div className='flex flex-col gap-2 p-2 border-double border-4 border-white w-full md:h-full h-2/5'>
+                        <div className='w-full h-fit'>
+                            <p className='md:text-5xl text-2xl'>SIDE-PROJECTS</p>
+                        </div>
+                        <div className='flex flex-row gap-2 p-1 items-start justify-start w-full hover:bg-[#09090b] hover:cursor-pointer'>
+                            <img src="/icon_site.png" className='size-14' />
+                            <div className='flex flex-col items-start justify-start text-left w-full'>
+                                <p className='text-2xl leading-tight'>Placeholder Project</p>
+                                <p className='text-sm text-white/80 leading-tight'>This is a template for my project links. Hover over me!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='flex flex-col md:h-full h-3/5 gap-2 w-full'>
+                        <div className='flex flex-col border-double border-4 border-white h-4/5 p-2'>
+                            <div className='w-full h-fit'>
+                                <p className='md:text-5xl text-2xl'>NEWS???</p>
+                            </div>
+                        </div>
+                        <div className='flex flex-row gap-2 border-double border-4 border-white h-1/5'>
+                            <div className='flex w-full h-full items-center justify-center'>
+                                <p className='text-white/50'>hahaha... im the mysterious unknown box</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div className='w-full h-1/5 flex items-center justify-center px-2'>
+                    <Link href='https://deepest.vercel.app'>
+                        <img src='/ad.gif'></img>
+                    </Link>
                 </div>
             </div>
         </div>

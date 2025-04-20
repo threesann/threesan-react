@@ -1,6 +1,3 @@
-
-
-
 const Descriptions = [
     {
         name: "chatitin",
