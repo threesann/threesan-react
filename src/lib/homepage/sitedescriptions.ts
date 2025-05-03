@@ -1,7 +1,7 @@
 const Descriptions = [
     {
         name: "chatitin",
-        image: "/pic_chatitin.png",
+        image: "/homepage/pic_chatitin.png",
         title: "CHAT IT IN",
         releaseDate: "16/9/2024",
         description: "A chatroom for Very Special People.",
@@ -9,7 +9,7 @@ const Descriptions = [
     },
     {
         name: "threesangithub",
-        image: "/pic_threesan.png",
+        image: "/homepage/pic_threesan.png",
         title: "threesann.github.io",
         releaseDate: "3/6/2024",
         description: "My old portfolio website. It's like a simpler version of this one, with a bunch of fun old stuff I made.",
@@ -17,7 +17,7 @@ const Descriptions = [
     },
     {
         name: "kevsterclicker",
-        image: "/pic_kevsterclicker.png",
+        image: "/homepage/pic_kevsterclicker.png",
         title: "Kevster Clicker",
         releaseDate: "10/6/2024",
         description: "Perhaps the greatest & most controversial game of All Time.",
@@ -25,7 +25,7 @@ const Descriptions = [
     },
     {
         name: "nighttimeforest",
-        image: "/pic_nighttimeforest.png",
+        image: "/homepage/pic_nighttimeforest.png",
         title: "??????",
         releaseDate: "??/??/????",
         description: "Who knows what it could be?",

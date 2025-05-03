@@ -16,7 +16,7 @@ const config: Config = {
         }
       },
       backgroundImage: {
-        'nighttime': "url('/bg_nighttime.png')",
+        'nighttime': "url('/homepage/bg_nighttime.png')",
       },
       keyframes: {
         backgroundMove: {
@@ -26,6 +26,10 @@ const config: Config = {
         slideUpAndFade: {
           from: { opacity: "0", transform: "translateY(10px)" },
           to: { opacity: "1", transform: "translateY(0)" },
+        },
+        slideRightAndFade: {
+          from: { opacity: "0", transform: "translateX(-10px)" },
+          to: { opacity: "1", transform: "translateX(0)" },
         },
         fadeIn: {
           from: { opacity: "0" },
@@ -50,6 +54,7 @@ const config: Config = {
       animation: {
         backgroundMove: "backgroundMove 240s linear infinite",
         slideUpAndFade: "slideUpAndFade 1s cubic-bezier(0.16, 1, 0.3, 1)",
+        slideRightAndFade: "slideRightAndFade 1s cubic-bezier(0.16, 1, 0.3, 1)",
         fadeIn: "fadeIn 1s ease-in-out",
         bob: "bob 3s ease-in-out infinite",
         slideUpAndFadeAndBob: "slideUpAndFade 1s cubic-bezier(0.16, 1, 0.3, 1), bob 3s ease-in-out 1s infinite",

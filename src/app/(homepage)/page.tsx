@@ -1,9 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 
 import Descriptions from '@/lib/homepage/sitedescriptions';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 
 export default function Home() {
@@ -14,6 +15,8 @@ export default function Home() {
 
     const [showDesc, setShowDesc] = useState<string>("");
     const currentDescription = Descriptions.find(desc => desc.name === showDesc);
+
+    const router = useRouter();
 
     
 
@@ -103,14 +106,14 @@ export default function Home() {
                     {/* elements in circle; 1-6 */}
                     <div style={{"--i": 1} as React.CSSProperties}>
                         <div className="md:block hidden animate-slideUpAndFadeAndBob bg-theme-background border-4 border-theme-border hover:border-white hover:cursor-not-allowed shadow shadow-black/50">
-                            <img src="/icon_comingsoon.png" className="w-full h-full"/>
+                            <img src="/homepage/icon_comingsoon.png" className="w-full h-full"/>
                         </div>
                     </div>
 
                     <div style={{"--i": 2} as React.CSSProperties}>
                         <div className="animate-slideUpAndFadeAndBob bg-theme-background border-4 border-theme-border hover:border-white hover:cursor-pointer shadow shadow-black/50">
                             <a href="https://threesann.github.io/">
-                                <img src="/icon_threesan.png" className="w-full h-full"
+                                <img src="/homepage/icon_threesan.png" className="w-full h-full"
                                     onMouseEnter={() => setShowDesc("threesangithub")} 
                                     onMouseLeave={() => setShowDesc("")}
                                 />
@@ -121,7 +124,7 @@ export default function Home() {
                     <div style={{"--i": 3} as React.CSSProperties}>
                         <div className="animate-slideUpAndFadeAndBob bg-theme-background border-4 border-theme-border hover:border-white hover:cursor-pointer shadow shadow-black/50">
                             <a href="https://kevsterclicker.com">
-                                <img src="/icon_chatitin.png" className="w-full h-full"
+                                <img src="/homepage/icon_chatitin.png" className="w-full h-full"
                                     onMouseEnter={() => setShowDesc("chatitin")} 
                                     onMouseLeave={() => setShowDesc("")}
                                 />
@@ -132,7 +135,7 @@ export default function Home() {
                     <div style={{"--i": 4} as React.CSSProperties}>
                         <div className="animate-slideUpAndFadeAndBob bg-theme-background border-4 border-theme-border hover:border-white hover:cursor-pointer shadow shadow-black/50">
                             <a href="https://kevster.vercel.app">
-                                <img src="/icon_kevsterclicker.png" className="w-full h-full"
+                                <img src="/homepage/icon_kevsterclicker.png" className="w-full h-full"
                                     onMouseEnter={() => setShowDesc("kevsterclicker")} 
                                     onMouseLeave={() => setShowDesc("")}
                                 />
@@ -142,7 +145,7 @@ export default function Home() {
 
                     <div style={{"--i": 5} as React.CSSProperties}>
                         <div className="animate-slideUpAndFadeAndBob bg-theme-background border-4 border-theme-border hover:border-white hover:cursor-not-allowed shadow shadow-black/50">
-                            <img src="/icon_nighttimeforest.png" className="w-full h-full"
+                            <img src="/homepage/icon_nighttimeforest.png" className="w-full h-full"
                                 onMouseEnter={() => setShowDesc("nighttimeforest")} 
                                 onMouseLeave={() => setShowDesc("")}
                             />
@@ -151,7 +154,7 @@ export default function Home() {
 
                     <div style={{"--i": 6} as React.CSSProperties}>
                         <div className="md:block hidden animate-slideUpAndFadeAndBob bg-theme-background border-4 border-theme-border hover:border-white hover:cursor-not-allowed shadow shadow-black/50">
-                            <img src="/icon_comingsoon.png" className="w-full h-full"/>
+                            <img src="/homepage/icon_comingsoon.png" className="w-full h-full"/>
                         </div>
                     </div>
 
@@ -177,11 +180,14 @@ export default function Home() {
                         <div className='w-full h-fit'>
                             <p className='md:text-5xl text-2xl'>SIDE-PROJECTS</p>
                         </div>
-                        <div className='flex flex-row gap-2 p-1 items-start justify-start w-full hover:bg-[#09090b] hover:cursor-pointer'>
-                            <img src="/icon_site.png" className='size-14' />
+                        <div 
+                            className='flex flex-row gap-2 p-1 items-start justify-start w-full hover:bg-white/10 hover:cursor-pointer'
+                            onClick={() => router.push("/soundboard")}
+                        >
+                            <img src="/homepage/kevster_soundboard.png" className='size-14' />
                             <div className='flex flex-col items-start justify-start text-left w-full'>
-                                <p className='text-2xl leading-tight'>Placeholder Project</p>
-                                <p className='text-sm text-white/80 leading-tight'>This is a template for my project links. Hover over me!</p>
+                                <p className='text-2xl leading-tight'>Kevster Soundboard</p>
+                                <p className='text-sm text-white/80 leading-tight'>Mess around with all of your favourite Kevster sounds and songs!</p>
                             </div>
                         </div>
                     </div>
@@ -200,7 +206,7 @@ export default function Home() {
                 </div>
                 <div className='w-full h-1/5 flex items-center justify-center px-2'>
                     <Link href='https://deepest.vercel.app'>
-                        <img src='/ad.gif'></img>
+                        <img src='/homepage/ad.gif'></img>
                     </Link>
                 </div>
             </div>
