@@ -137,10 +137,12 @@ export default function Soundboard() {
           >
             {currentSongTitle ? currentSongTitle : "nothing"}
           </p>
-          {playingIndex !== null && (
+          {playingIndex !== null ? (
             <p className="text-white/75">
               {formatTime(elapsedTime)} / {formatTime(duration)}
             </p>
+          ) : (
+            <p className="text-white/75">0:00 / 0:00</p>
           )}
         </div>
       </div>
