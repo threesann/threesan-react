@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import Descriptions from '@/lib/homepage/sitedescriptions';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import SideProjects from './_components/sideprojects';
 
 
 export default function Home() {
@@ -78,7 +79,7 @@ export default function Home() {
     }
 
     return (
-        <div className='w-full h-fit'>
+        <div className='w-full h-fit no-scrollbar'>
         {/* section 1 */}
         <div className="section relative h-screen w-full bg-nighttime animate-backgroundMove">
             <div className="flex items-center justify-center h-full md:w-1/5 w-4/5 m-auto">
@@ -176,20 +177,11 @@ export default function Home() {
                 </div>
                 
                 <div className='flex md:flex-row flex-col md:w-3/5 w-4/5 md:h-3/5 h-full m-auto md:gap-3 gap-2'>
-                    <div className='flex flex-col gap-2 p-2 border-double border-4 border-white w-full md:h-full h-2/5'>
+                    <div className='flex flex-col gap-2 p-2 border-double border-4 border-white w-full md:h-full h-2/5 overflow-y-scroll'>
                         <div className='w-full h-fit'>
                             <p className='md:text-5xl text-2xl'>SIDE-PROJECTS</p>
                         </div>
-                        <div 
-                            className='flex flex-row gap-2 p-1 items-start justify-start w-full hover:bg-white/10 hover:cursor-pointer'
-                            onClick={() => router.push("/soundboard")}
-                        >
-                            <img src="/homepage/kevster_soundboard.png" className='size-14' />
-                            <div className='flex flex-col items-start justify-start text-left w-full'>
-                                <p className='text-2xl leading-tight'>Kevster Soundboard</p>
-                                <p className='text-sm text-white/80 leading-tight'>Mess around with all of your favourite Kevster sounds and songs!</p>
-                            </div>
-                        </div>
+                        <SideProjects />
                     </div>
                     <div className='flex flex-col md:h-full h-3/5 gap-2 w-full'>
                         <div className='flex flex-col border-double border-4 border-white h-4/5 p-2'>

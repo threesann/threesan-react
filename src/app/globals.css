@@ -24,6 +24,42 @@ body {
   /* font-family: Arial, Helvetica, sans-serif; */
 }
 
+
+@layer utilities {
+  /* Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}
+
+
+/* Customize the scrollbar width */
+::-webkit-scrollbar {
+  width: 8px;
+  margin: 2px 2px 0 0;
+}
+
+::-webkit-scrollbar-track {
+  /* Customize the scrollbar track */
+  padding-right: 5px;
+  background: #000000;
+}
+
+/* Customize the scrollbar thumb */
+::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #ffffff;
+}
+
 /* :nth-child(1) { --nth-child: 1 }
 :nth-child(2) { --nth-child: 2 }
 :nth-child(3) { --nth-child: 3 }

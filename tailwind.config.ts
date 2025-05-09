@@ -15,6 +15,10 @@ const config: Config = {
           text: '#413a87',
         }
       },
+      dropShadow: {
+        custom: "0 4px 0px var(--tw-shadow-color)",
+        black: "0 2px 1px rgb(0, 0, 0)",
+      },
       backgroundImage: {
         'nighttime': "url('/homepage/bg_nighttime.png')",
       },
