@@ -43,6 +43,12 @@ export default function PlayArea({
         ArrowRight: false,
     });
 
+    useEffect(() => {
+        // Reset flags and current target when mode changes
+        setFlags([]);
+        setCurrentTarget(null);
+    }, [mode]);
+
     // Measure parent div dimensions
     useEffect(() => {
         const updateParentSize = () => {
@@ -192,8 +198,7 @@ export default function PlayArea({
                                 setFlags((prevFlags) => prevFlags.slice(1)); // Remove the reached flag -- DOESNT WORK PROPERLY
                                 if (flags.length > 1) {
                                     setCurrentTarget(flags[1]); // Set the next flag as the target
-                                }
-                                else {
+                                } else {
                                     setCurrentTarget(null); // Clear the current target
                                 }
                                 return currentTarget; // Snap to the target position
@@ -207,7 +212,6 @@ export default function PlayArea({
                                 newY += playerSpeed;
                             if (currentTarget.y < prevPos.y + playerSpeed)
                                 newY -= playerSpeed;
-
 
                             // Check for collisions with walls
                             if (newX > areaSize.width - playerSize)
@@ -287,8 +291,10 @@ export default function PlayArea({
                 )}
                 {mode === "click" && (
                     <p>
-                        MOUSE X: {mousePos.x} Y: {mousePos.y}<br />
-                        FLAGS: {JSON.stringify(flags)}<br />
+                        MOUSE X: {mousePos.x} Y: {mousePos.y}
+                        <br />
+                        FLAGS: {JSON.stringify(flags)}
+                        <br />
                         CURRENT TARGET: {JSON.stringify(currentTarget)}
                     </p>
                 )}
