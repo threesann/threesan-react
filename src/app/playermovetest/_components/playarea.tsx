@@ -34,6 +34,8 @@ export default function PlayArea({
     const [areaSize, setAreaSize] = useState({ width: 0, height: 0 });
     const areaRef = useRef<HTMLDivElement>(null);
 
+    const arrowKeys = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
+
     // const [isMoving, setIsMoving] = useState(false);
 
     const [keysPressed, setKeysPressed] = useState({
@@ -66,9 +68,25 @@ export default function PlayArea({
         };
     }, []);
 
+    // Function to check collision between two rectangles
+    const isColliding = (
+        rect1: { x: number; y: number; size: number },
+        rect2: { x: number; y: number; size: number }
+    ) => {
+        return !(
+            (
+                rect1.x + rect1.size < rect2.x || // rect1 is to the left of rect2
+                rect1.x > rect2.x + rect2.size || // rect1 is to the right of rect2
+                rect1.y + rect1.size < rect2.y || // rect1 is above rect2
+                rect1.y > rect2.y + rect2.size
+            ) // rect1 is below rect2
+        );
+    };
+
     if (mode === "arrow") {
         useEffect(() => {
             const handleKeyDown = (event: KeyboardEvent) => {
+                if (!arrowKeys.includes(event.key)) return; // Ignore other keys
                 setKeysPressed((prevKeys) => ({
                     ...prevKeys,
                     [event.key]: true,
@@ -76,25 +94,11 @@ export default function PlayArea({
             };
 
             const handleKeyUp = (event: KeyboardEvent) => {
+                if (!arrowKeys.includes(event.key)) return; // Ignore other keys
                 setKeysPressed((prevKeys) => ({
                     ...prevKeys,
                     [event.key]: false,
                 }));
-            };
-
-            // Function to check collision between two rectangles
-            const isColliding = (
-                rect1: { x: number; y: number; size: number },
-                rect2: { x: number; y: number; size: number }
-            ) => {
-                return !(
-                    (
-                        rect1.x + rect1.size < rect2.x || // rect1 is to the left of rect2
-                        rect1.x > rect2.x + rect2.size || // rect1 is to the right of rect2
-                        rect1.y + rect1.size < rect2.y || // rect1 is above rect2
-                        rect1.y > rect2.y + rect2.size
-                    ) // rect1 is below rect2
-                );
             };
 
             const movePlayer = () => {
@@ -220,6 +224,26 @@ export default function PlayArea({
                                 newY = areaSize.height - playerSize;
                             if (newX < 0) newX = 0;
                             if (newY < 0) newY = 0;
+
+                            // Check for collisions with objects
+                            const playerRect = {
+                                x: newX,
+                                y: newY,
+                                size: playerSize,
+                            };
+                            for (const obj of objects) {
+                                if (
+                                    isColliding(playerRect, {
+                                        x: obj.x,
+                                        y: obj.y,
+                                        size: obj.size,
+                                    })
+                                ) {
+                                    setCurrentTarget(null); // Clear the current target
+                                    setFlags([]); // Clear the flags
+                                    return prevPos; // Stop movement if collision occurs
+                                }
+                            }
 
                             // // Update player angle
                             // setPlayerAngle(

@@ -203,11 +203,6 @@ export default function Home() {
                 </div>
             </div>
         </div>
-        <div className='section w-full h-screen bg-theme-background'>
-            <div className='flex flex-col items-center justify-center w-3/5 h-full m-auto text-center gap-1'>
-                <p className='text-4xl'>SURPRISE! section 3 :O</p>
-            </div>
-        </div>
         </div>
       
     );
